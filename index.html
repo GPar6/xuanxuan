@@ -85,12 +85,12 @@
 
     <div id="container">
         <h1 id="text-display">
-            今天是情人节<br>
-            林志涵<br>我喜欢你<br>做我女朋友好吗？
+            终于等到这一天了<br>我们无法预知意外和明天哪个先来<br>我更不想留下遗憾而追悔莫及<br>所以，我决定勇敢一次<br>
+            萱萱<br>我真的喜欢你<br>你愿意和我一直纠缠在一起吗？
         </h1>
         <div class="buttons">
-            <button id="yes-btn">不行</button>
-            <button id="no-btn">好呀</button>
+            <button id="yes-btn">愿意</button>
+            <button id="no-btn">不愿意</button>
         </div>
     </div>
 
@@ -120,7 +120,7 @@
 
         // 2. 点击“好呀”后的甜蜜结果
         yesBtn.addEventListener('click', () => {
-            textDisplay.innerHTML = "💔💔💔<br>呜呜呜呜呜<都在欺负萌萌的我><br>单身狗万岁！";
+            textDisplay.innerHTML ="❤️<br>哈哈<br>我就知道<br>我爱你<br>❤️萱萱宝宝❤️";
             document.querySelector('.buttons').style.display = 'none';
             // 撒满屏红心
             setInterval(createHeart, 150);
@@ -130,7 +130,7 @@
         function createHeart() {
             const heart = document.createElement('div');
             heart.classList.add('heart');
-            heart.innerHTML = '💔';
+            heart.innerHTML = '🌹';
             heart.style.left = Math.random() * 100 + 'vw';
             heart.style.fontSize = Math.random() * 20 + 20 + 'px';
             const duration = Math.random() * 2 + 3;
