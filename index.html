@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>致最特别的你</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            background-color: #ffeef2;
+            font-family: 'Microsoft YaHei', sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        #container {
+            text-align: center;
+            z-index: 10;
+            padding: 20px;
+        }
+
+        h1 {
+            color: #d63384;
+            font-size: 35px;
+            margin-bottom: 40px;
+            line-height: 1.5;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+        }
+
+        .buttons {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            position: relative;
+            width: 100%;
+            height: 50px;
+        }
+
+        button {
+            padding: 12px 30px;
+            font-size: 18px;
+            cursor: pointer;
+            border: none;
+            border-radius: 25px;
+            transition: all 0.2s;
+        }
+
+        /* “好呀”按钮样式 */
+        #yes-btn {
+            background-color: #ff4d4f;
+            color: white;
+            box-shadow: 0 4px 15px rgba(255, 77, 79, 0.4);
+        }
+
+        /* “不行”按钮样式 */
+        #no-btn {
+            background-color: #8c8c8c;
+            color: white;
+        }
+
+        .heart {
+            position: fixed;
+            color: #ff4d4f;
+            animation: fall linear forwards;
+            user-select: none;
+            z-index: 100;
+        }
+
+        @keyframes fall {
+            to {
+                transform: translateY(100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="container">
+        <h1 id="text-display">
+            今天是情人节<br>
+            萱萱<br>我喜欢你<br>做我女朋友好吗？
+        </h1>
+        <div class="buttons">
+            <button id="yes-btn">不行</button>
+            <button id="no-btn">好呀</button>
+        </div>
+    </div>
+
+    <script>
+        const yesBtn = document.getElementById('yes-btn');
+        const noBtn = document.getElementById('no-btn');
+        const textDisplay = document.getElementById('text-display');
+
+        // 1. “不行”按钮逃跑逻辑
+        const moveButton = () => {
+            const maxX = window.innerWidth - noBtn.offsetWidth - 20;
+            const maxY = window.innerHeight - noBtn.offsetHeight - 20;
+            const x = Math.random() * maxX;
+            const y = Math.random() * maxY;
+
+            noBtn.style.position = 'fixed';
+            noBtn.style.left = x + 'px';
+            noBtn.style.top = y + 'px';
+        };
+
+        // 绑定逃跑事件
+        noBtn.addEventListener('mouseover', moveButton);
+        noBtn.addEventListener('touchstart', (e) => {
+            e.preventDefault();
+            moveButton();
+        });
+
+        // 2. 点击“好呀”后的甜蜜结果
+        yesBtn.addEventListener('click', () => {
+            textDisplay.innerHTML = "💔💔💔<br>呜呜呜呜呜<都在欺负萌萌的我><br>单身狗万岁！";
+            document.querySelector('.buttons').style.display = 'none';
+            // 撒满屏红心
+            setInterval(createHeart, 150);
+        });
+
+        // 3. 飘落爱心背景逻辑
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.classList.add('heart');
+            heart.innerHTML = '💔';
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.fontSize = Math.random() * 20 + 20 + 'px';
+            const duration = Math.random() * 2 + 3;
+            heart.style.animationDuration = duration + 's';
+            document.body.appendChild(heart);
+            setTimeout(() => heart.remove(), duration * 1000);
+        }
+    </script>
+</body>
+
+</html>
